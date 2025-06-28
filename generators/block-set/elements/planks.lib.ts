@@ -17,7 +17,7 @@ export function createPlanks(
     blocksIO: BlockJsonIO
 ) {
     Deno.writeTextFileSync(
-        `BP/blocks/azur/block_set/${id.name}/planks.json`,
+        `BP/blocks/${id.description.namespace}/block_set/${id.name}/planks.json`,
         JSON.stringify(createPlanksBlockDefinition(id, def, blocksIO))
     );
 }

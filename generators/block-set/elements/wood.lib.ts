@@ -18,13 +18,13 @@ export function createWood(
     blocksIO: BlockJsonIO
 ) {
     Deno.writeTextFileSync(
-        `BP/blocks/azur/block_set/${id.name}/wood.json`,
+        `BP/blocks/${id.description.namespace}/block_set/${id.name}/wood.json`,
         JSON.stringify(createWoodBlockDefinition(id, def))
     );
 
     if (def.strippable !== undefined && 'texture' in def.strippable) {
         Deno.writeTextFileSync(
-            `BP/blocks/azur/block_set/${id.name}/stripped_wood.json`,
+            `BP/blocks/${id.description.namespace}/block_set/${id.name}/stripped_wood.json`,
             JSON.stringify(createStrippedWoodBlockDefinition(id, def))
         );
     }
@@ -56,7 +56,7 @@ const createWoodBlockDefinition = (
     };
 
     if (def.strippable !== undefined)
-        components['azur:strippable'] = {
+        components[`${id.description.namespace}:strippable`] = {
             target_block:
                 'block' in def.strippable
                     ? def.strippable.block

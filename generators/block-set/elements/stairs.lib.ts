@@ -17,7 +17,7 @@ export function createStairs(
     blocksIO: BlockJsonIO
 ) {
     Deno.writeTextFileSync(
-        `BP/blocks/azur/block_set/${id.name}/stairs.json`,
+        `BP/blocks/${id.description.namespace}/block_set/${id.name}/stairs.json`,
         JSON.stringify(createStairsBlockDefinition(id, def, blocksIO))
     );
 }
@@ -36,7 +36,7 @@ function createStairsBlockDefinition(
     const components: Record<string, unknown> = {
         'minecraft:item_visual': {
             geometry: {
-                identifier: 'geometry.azur.stairs',
+                identifier: `geometry.${id.description.namespace}.stairs`,
                 bone_visibility: {
                     bot_ne: true,
                     bot_nw: true,
@@ -52,14 +52,14 @@ function createStairsBlockDefinition(
         },
         'minecraft:material_instances': def.texture,
 
-        'azur:stairs': {},
+        [`${id.description.namespace}:stairs`]: {},
 
-        'tag:azur:stair': {},
+        [`tag:${id.description.namespace}:stair`]: {},
     };
 
     const permutations = [
         {
-            condition: "q.block_state('minecraft:vertical_half') == 'bottom'",
+            condition: `q.block_state('minecraft:vertical_half') == 'bottom'`,
             components: {
                 'minecraft:collision_box': {
                     origin: [-8, 0, -8],
@@ -69,11 +69,11 @@ function createStairsBlockDefinition(
                     origin: [-8, 0, -8],
                     size: [16, 8, 16],
                 },
-                'tag:azur:bottom_half': {},
+                [`tag:${id.description.namespace}:bottom_half`]: {},
             },
         },
         {
-            condition: "q.block_state('minecraft:vertical_half') == 'top'",
+            condition: `q.block_state('minecraft:vertical_half') == 'top'`,
             components: {
                 'minecraft:collision_box': {
                     origin: [-8, 8, -8],
@@ -83,17 +83,16 @@ function createStairsBlockDefinition(
                     origin: [-8, 8, -8],
                     size: [16, 8, 16],
                 },
-                'tag:azur:top_half': {},
+                [`tag:${id.description.namespace}:top_half`]: {},
             },
         },
 
         //bot 1
         {
-            condition:
-                "q.block_state('minecraft:vertical_half') == 'bottom' && q.block_state('minecraft:cardinal_direction') == 'north' && q.block_state('azur:type') == 1",
+            condition: `q.block_state('minecraft:vertical_half') == 'bottom' && q.block_state('minecraft:cardinal_direction') == 'north' && q.block_state('${id.description.namespace}:type') == 1`,
             components: {
                 'minecraft:geometry': {
-                    identifier: 'geometry.azur.stairs',
+                    identifier: `geometry.${id.description.namespace}.stairs`,
                     bone_visibility: {
                         bot_ne: true,
                         bot_nw: true,
@@ -114,15 +113,14 @@ function createStairsBlockDefinition(
                         },
                     ],
                 },
-                'tag:azur:north': {},
+                [`tag:${id.description.namespace}:north`]: {},
             },
         },
         {
-            condition:
-                "q.block_state('minecraft:vertical_half') == 'bottom' && q.block_state('minecraft:cardinal_direction') == 'south' && q.block_state('azur:type') == 1",
+            condition: `q.block_state('minecraft:vertical_half') == 'bottom' && q.block_state('minecraft:cardinal_direction') == 'south' && q.block_state('${id.description.namespace}:type') == 1`,
             components: {
                 'minecraft:geometry': {
-                    identifier: 'geometry.azur.stairs',
+                    identifier: `geometry.${id.description.namespace}.stairs`,
                     bone_visibility: {
                         bot_ne: true,
                         bot_nw: true,
@@ -143,15 +141,14 @@ function createStairsBlockDefinition(
                         },
                     ],
                 },
-                'tag:azur:south': {},
+                [`tag:${id.description.namespace}:south`]: {},
             },
         },
         {
-            condition:
-                "q.block_state('minecraft:vertical_half') == 'bottom' && q.block_state('minecraft:cardinal_direction') == 'east' && q.block_state('azur:type') == 1",
+            condition: `q.block_state('minecraft:vertical_half') == 'bottom' && q.block_state('minecraft:cardinal_direction') == 'east' && q.block_state('${id.description.namespace}:type') == 1`,
             components: {
                 'minecraft:geometry': {
-                    identifier: 'geometry.azur.stairs',
+                    identifier: `geometry.${id.description.namespace}.stairs`,
                     bone_visibility: {
                         bot_ne: true,
                         bot_nw: true,
@@ -172,15 +169,14 @@ function createStairsBlockDefinition(
                         },
                     ],
                 },
-                'tag:azur:east': {},
+                [`tag:${id.description.namespace}:east`]: {},
             },
         },
         {
-            condition:
-                "q.block_state('minecraft:vertical_half') == 'bottom' && q.block_state('minecraft:cardinal_direction') == 'west' && q.block_state('azur:type') == 1",
+            condition: `q.block_state('minecraft:vertical_half') == 'bottom' && q.block_state('minecraft:cardinal_direction') == 'west' && q.block_state('${id.description.namespace}:type') == 1`,
             components: {
                 'minecraft:geometry': {
-                    identifier: 'geometry.azur.stairs',
+                    identifier: `geometry.${id.description.namespace}.stairs`,
                     bone_visibility: {
                         bot_ne: true,
                         bot_nw: true,
@@ -201,17 +197,16 @@ function createStairsBlockDefinition(
                         },
                     ],
                 },
-                'tag:azur:west': {},
+                [`tag:${id.description.namespace}:west`]: {},
             },
         },
 
         //bot 2
         {
-            condition:
-                "q.block_state('minecraft:vertical_half') == 'bottom' && q.block_state('minecraft:cardinal_direction') == 'north' && q.block_state('azur:type') == 2",
+            condition: `q.block_state('minecraft:vertical_half') == 'bottom' && q.block_state('minecraft:cardinal_direction') == 'north' && q.block_state('${id.description.namespace}:type') == 2`,
             components: {
                 'minecraft:geometry': {
-                    identifier: 'geometry.azur.stairs',
+                    identifier: `geometry.${id.description.namespace}.stairs`,
                     bone_visibility: {
                         bot_ne: true,
                         bot_nw: true,
@@ -232,15 +227,14 @@ function createStairsBlockDefinition(
                         },
                     ],
                 },
-                'tag:azur:north': {},
+                [`tag:${id.description.namespace}:north`]: {},
             },
         },
         {
-            condition:
-                "q.block_state('minecraft:vertical_half') == 'bottom' && q.block_state('minecraft:cardinal_direction') == 'south' && q.block_state('azur:type') == 2",
+            condition: `q.block_state('minecraft:vertical_half') == 'bottom' && q.block_state('minecraft:cardinal_direction') == 'south' && q.block_state('${id.description.namespace}:type') == 2`,
             components: {
                 'minecraft:geometry': {
-                    identifier: 'geometry.azur.stairs',
+                    identifier: `geometry.${id.description.namespace}.stairs`,
                     bone_visibility: {
                         bot_ne: true,
                         bot_nw: true,
@@ -261,15 +255,14 @@ function createStairsBlockDefinition(
                         },
                     ],
                 },
-                'tag:azur:south': {},
+                [`tag:${id.description.namespace}:south`]: {},
             },
         },
         {
-            condition:
-                "q.block_state('minecraft:vertical_half') == 'bottom' && q.block_state('minecraft:cardinal_direction') == 'east' && q.block_state('azur:type') == 2",
+            condition: `q.block_state('minecraft:vertical_half') == 'bottom' && q.block_state('minecraft:cardinal_direction') == 'east' && q.block_state('${id.description.namespace}:type') == 2`,
             components: {
                 'minecraft:geometry': {
-                    identifier: 'geometry.azur.stairs',
+                    identifier: `geometry.${id.description.namespace}.stairs`,
                     bone_visibility: {
                         bot_ne: true,
                         bot_nw: true,
@@ -290,15 +283,14 @@ function createStairsBlockDefinition(
                         },
                     ],
                 },
-                'tag:azur:east': {},
+                [`tag:${id.description.namespace}:east`]: {},
             },
         },
         {
-            condition:
-                "q.block_state('minecraft:vertical_half') == 'bottom' && q.block_state('minecraft:cardinal_direction') == 'west' && q.block_state('azur:type') == 2",
+            condition: `q.block_state('minecraft:vertical_half') == 'bottom' && q.block_state('minecraft:cardinal_direction') == 'west' && q.block_state('${id.description.namespace}:type') == 2`,
             components: {
                 'minecraft:geometry': {
-                    identifier: 'geometry.azur.stairs',
+                    identifier: `geometry.${id.description.namespace}.stairs`,
                     bone_visibility: {
                         bot_ne: true,
                         bot_nw: true,
@@ -319,17 +311,16 @@ function createStairsBlockDefinition(
                         },
                     ],
                 },
-                'tag:azur:west': {},
+                [`tag:${id.description.namespace}:west`]: {},
             },
         },
 
         //bot 3
         {
-            condition:
-                "q.block_state('minecraft:vertical_half') == 'bottom' && q.block_state('minecraft:cardinal_direction') == 'north' && q.block_state('azur:type') == 3",
+            condition: `q.block_state('minecraft:vertical_half') == 'bottom' && q.block_state('minecraft:cardinal_direction') == 'north' && q.block_state('${id.description.namespace}:type') == 3`,
             components: {
                 'minecraft:geometry': {
-                    identifier: 'geometry.azur.stairs',
+                    identifier: `geometry.${id.description.namespace}.stairs`,
                     bone_visibility: {
                         bot_ne: true,
                         bot_nw: true,
@@ -350,15 +341,14 @@ function createStairsBlockDefinition(
                         },
                     ],
                 },
-                'tag:azur:north': {},
+                [`tag:${id.description.namespace}:north`]: {},
             },
         },
         {
-            condition:
-                "q.block_state('minecraft:vertical_half') == 'bottom' && q.block_state('minecraft:cardinal_direction') == 'south' && q.block_state('azur:type') == 3",
+            condition: `q.block_state('minecraft:vertical_half') == 'bottom' && q.block_state('minecraft:cardinal_direction') == 'south' && q.block_state('${id.description.namespace}:type') == 3`,
             components: {
                 'minecraft:geometry': {
-                    identifier: 'geometry.azur.stairs',
+                    identifier: `geometry.${id.description.namespace}.stairs`,
                     bone_visibility: {
                         bot_ne: true,
                         bot_nw: true,
@@ -379,15 +369,14 @@ function createStairsBlockDefinition(
                         },
                     ],
                 },
-                'tag:azur:south': {},
+                [`tag:${id.description.namespace}:south`]: {},
             },
         },
         {
-            condition:
-                "q.block_state('minecraft:vertical_half') == 'bottom' && q.block_state('minecraft:cardinal_direction') == 'east' && q.block_state('azur:type') == 3",
+            condition: `q.block_state('minecraft:vertical_half') == 'bottom' && q.block_state('minecraft:cardinal_direction') == 'east' && q.block_state('${id.description.namespace}:type') == 3`,
             components: {
                 'minecraft:geometry': {
-                    identifier: 'geometry.azur.stairs',
+                    identifier: `geometry.${id.description.namespace}.stairs`,
                     bone_visibility: {
                         bot_ne: true,
                         bot_nw: true,
@@ -408,15 +397,14 @@ function createStairsBlockDefinition(
                         },
                     ],
                 },
-                'tag:azur:east': {},
+                [`tag:${id.description.namespace}:east`]: {},
             },
         },
         {
-            condition:
-                "q.block_state('minecraft:vertical_half') == 'bottom' && q.block_state('minecraft:cardinal_direction') == 'west' && q.block_state('azur:type') == 3",
+            condition: `q.block_state('minecraft:vertical_half') == 'bottom' && q.block_state('minecraft:cardinal_direction') == 'west' && q.block_state('${id.description.namespace}:type') == 3`,
             components: {
                 'minecraft:geometry': {
-                    identifier: 'geometry.azur.stairs',
+                    identifier: `geometry.${id.description.namespace}.stairs`,
                     bone_visibility: {
                         bot_ne: true,
                         bot_nw: true,
@@ -437,17 +425,16 @@ function createStairsBlockDefinition(
                         },
                     ],
                 },
-                'tag:azur:west': {},
+                [`tag:${id.description.namespace}:west`]: {},
             },
         },
 
         //bot 4
         {
-            condition:
-                "q.block_state('minecraft:vertical_half') == 'bottom' && q.block_state('minecraft:cardinal_direction') == 'north' && q.block_state('azur:type') == 4",
+            condition: `q.block_state('minecraft:vertical_half') == 'bottom' && q.block_state('minecraft:cardinal_direction') == 'north' && q.block_state('${id.description.namespace}:type') == 4`,
             components: {
                 'minecraft:geometry': {
-                    identifier: 'geometry.azur.stairs',
+                    identifier: `geometry.${id.description.namespace}.stairs`,
                     bone_visibility: {
                         bot_ne: true,
                         bot_nw: true,
@@ -468,15 +455,14 @@ function createStairsBlockDefinition(
                         },
                     ],
                 },
-                'tag:azur:north': {},
+                [`tag:${id.description.namespace}:north`]: {},
             },
         },
         {
-            condition:
-                "q.block_state('minecraft:vertical_half') == 'bottom' && q.block_state('minecraft:cardinal_direction') == 'south' && q.block_state('azur:type') == 4",
+            condition: `q.block_state('minecraft:vertical_half') == 'bottom' && q.block_state('minecraft:cardinal_direction') == 'south' && q.block_state('${id.description.namespace}:type') == 4`,
             components: {
                 'minecraft:geometry': {
-                    identifier: 'geometry.azur.stairs',
+                    identifier: `geometry.${id.description.namespace}.stairs`,
                     bone_visibility: {
                         bot_ne: true,
                         bot_nw: true,
@@ -497,15 +483,14 @@ function createStairsBlockDefinition(
                         },
                     ],
                 },
-                'tag:azur:south': {},
+                [`tag:${id.description.namespace}:south`]: {},
             },
         },
         {
-            condition:
-                "q.block_state('minecraft:vertical_half') == 'bottom' && q.block_state('minecraft:cardinal_direction') == 'east' && q.block_state('azur:type') == 4",
+            condition: `q.block_state('minecraft:vertical_half') == 'bottom' && q.block_state('minecraft:cardinal_direction') == 'east' && q.block_state('${id.description.namespace}:type') == 4`,
             components: {
                 'minecraft:geometry': {
-                    identifier: 'geometry.azur.stairs',
+                    identifier: `geometry.${id.description.namespace}.stairs`,
                     bone_visibility: {
                         bot_ne: true,
                         bot_nw: true,
@@ -526,15 +511,14 @@ function createStairsBlockDefinition(
                         },
                     ],
                 },
-                'tag:azur:east': {},
+                [`tag:${id.description.namespace}:east`]: {},
             },
         },
         {
-            condition:
-                "q.block_state('minecraft:vertical_half') == 'bottom' && q.block_state('minecraft:cardinal_direction') == 'west' && q.block_state('azur:type') == 4",
+            condition: `q.block_state('minecraft:vertical_half') == 'bottom' && q.block_state('minecraft:cardinal_direction') == 'west' && q.block_state('${id.description.namespace}:type') == 4`,
             components: {
                 'minecraft:geometry': {
-                    identifier: 'geometry.azur.stairs',
+                    identifier: `geometry.${id.description.namespace}.stairs`,
                     bone_visibility: {
                         bot_ne: true,
                         bot_nw: true,
@@ -555,17 +539,16 @@ function createStairsBlockDefinition(
                         },
                     ],
                 },
-                'tag:azur:west': {},
+                [`tag:${id.description.namespace}:west`]: {},
             },
         },
 
         //bot 5
         {
-            condition:
-                "q.block_state('minecraft:vertical_half') == 'bottom' && q.block_state('minecraft:cardinal_direction') == 'north' && q.block_state('azur:type') == 5",
+            condition: `q.block_state('minecraft:vertical_half') == 'bottom' && q.block_state('minecraft:cardinal_direction') == 'north' && q.block_state('${id.description.namespace}:type') == 5`,
             components: {
                 'minecraft:geometry': {
-                    identifier: 'geometry.azur.stairs',
+                    identifier: `geometry.${id.description.namespace}.stairs`,
                     bone_visibility: {
                         bot_ne: true,
                         bot_nw: true,
@@ -586,15 +569,14 @@ function createStairsBlockDefinition(
                         },
                     ],
                 },
-                'tag:azur:north': {},
+                [`tag:${id.description.namespace}:north`]: {},
             },
         },
         {
-            condition:
-                "q.block_state('minecraft:vertical_half') == 'bottom' && q.block_state('minecraft:cardinal_direction') == 'south' && q.block_state('azur:type') == 5",
+            condition: `q.block_state('minecraft:vertical_half') == 'bottom' && q.block_state('minecraft:cardinal_direction') == 'south' && q.block_state('${id.description.namespace}:type') == 5`,
             components: {
                 'minecraft:geometry': {
-                    identifier: 'geometry.azur.stairs',
+                    identifier: `geometry.${id.description.namespace}.stairs`,
                     bone_visibility: {
                         bot_ne: true,
                         bot_nw: true,
@@ -615,15 +597,14 @@ function createStairsBlockDefinition(
                         },
                     ],
                 },
-                'tag:azur:south': {},
+                [`tag:${id.description.namespace}:south`]: {},
             },
         },
         {
-            condition:
-                "q.block_state('minecraft:vertical_half') == 'bottom' && q.block_state('minecraft:cardinal_direction') == 'east' && q.block_state('azur:type') == 5",
+            condition: `q.block_state('minecraft:vertical_half') == 'bottom' && q.block_state('minecraft:cardinal_direction') == 'east' && q.block_state('${id.description.namespace}:type') == 5`,
             components: {
                 'minecraft:geometry': {
-                    identifier: 'geometry.azur.stairs',
+                    identifier: `geometry.${id.description.namespace}.stairs`,
                     bone_visibility: {
                         bot_ne: true,
                         bot_nw: true,
@@ -644,15 +625,14 @@ function createStairsBlockDefinition(
                         },
                     ],
                 },
-                'tag:azur:east': {},
+                [`tag:${id.description.namespace}:east`]: {},
             },
         },
         {
-            condition:
-                "q.block_state('minecraft:vertical_half') == 'bottom' && q.block_state('minecraft:cardinal_direction') == 'west' && q.block_state('azur:type') == 5",
+            condition: `q.block_state('minecraft:vertical_half') == 'bottom' && q.block_state('minecraft:cardinal_direction') == 'west' && q.block_state('${id.description.namespace}:type') == 5`,
             components: {
                 'minecraft:geometry': {
-                    identifier: 'geometry.azur.stairs',
+                    identifier: `geometry.${id.description.namespace}.stairs`,
                     bone_visibility: {
                         bot_ne: true,
                         bot_nw: true,
@@ -673,17 +653,16 @@ function createStairsBlockDefinition(
                         },
                     ],
                 },
-                'tag:azur:west': {},
+                [`tag:${id.description.namespace}:west`]: {},
             },
         },
 
         //top 1
         {
-            condition:
-                "q.block_state('minecraft:vertical_half') == 'top' && q.block_state('minecraft:cardinal_direction') == 'north' && q.block_state('azur:type') == 1",
+            condition: `q.block_state('minecraft:vertical_half') == 'top' && q.block_state('minecraft:cardinal_direction') == 'north' && q.block_state('${id.description.namespace}:type') == 1`,
             components: {
                 'minecraft:geometry': {
-                    identifier: 'geometry.azur.stairs',
+                    identifier: `geometry.${id.description.namespace}.stairs`,
                     bone_visibility: {
                         bot_ne: true,
                         bot_nw: true,
@@ -704,15 +683,14 @@ function createStairsBlockDefinition(
                         },
                     ],
                 },
-                'tag:azur:north': {},
+                [`tag:${id.description.namespace}:north`]: {},
             },
         },
         {
-            condition:
-                "q.block_state('minecraft:vertical_half') == 'top' && q.block_state('minecraft:cardinal_direction') == 'south' && q.block_state('azur:type') == 1",
+            condition: `q.block_state('minecraft:vertical_half') == 'top' && q.block_state('minecraft:cardinal_direction') == 'south' && q.block_state('${id.description.namespace}:type') == 1`,
             components: {
                 'minecraft:geometry': {
-                    identifier: 'geometry.azur.stairs',
+                    identifier: `geometry.${id.description.namespace}.stairs`,
                     bone_visibility: {
                         bot_ne: false,
                         bot_nw: false,
@@ -733,15 +711,14 @@ function createStairsBlockDefinition(
                         },
                     ],
                 },
-                'tag:azur:south': {},
+                [`tag:${id.description.namespace}:south`]: {},
             },
         },
         {
-            condition:
-                "q.block_state('minecraft:vertical_half') == 'top' && q.block_state('minecraft:cardinal_direction') == 'east' && q.block_state('azur:type') == 1",
+            condition: `q.block_state('minecraft:vertical_half') == 'top' && q.block_state('minecraft:cardinal_direction') == 'east' && q.block_state('${id.description.namespace}:type') == 1`,
             components: {
                 'minecraft:geometry': {
-                    identifier: 'geometry.azur.stairs',
+                    identifier: `geometry.${id.description.namespace}.stairs`,
                     bone_visibility: {
                         bot_ne: true,
                         bot_nw: false,
@@ -762,15 +739,14 @@ function createStairsBlockDefinition(
                         },
                     ],
                 },
-                'tag:azur:east': {},
+                [`tag:${id.description.namespace}:east`]: {},
             },
         },
         {
-            condition:
-                "q.block_state('minecraft:vertical_half') == 'top' && q.block_state('minecraft:cardinal_direction') == 'west' && q.block_state('azur:type') == 1",
+            condition: `q.block_state('minecraft:vertical_half') == 'top' && q.block_state('minecraft:cardinal_direction') == 'west' && q.block_state('${id.description.namespace}:type') == 1`,
             components: {
                 'minecraft:geometry': {
-                    identifier: 'geometry.azur.stairs',
+                    identifier: `geometry.${id.description.namespace}.stairs`,
                     bone_visibility: {
                         bot_ne: false,
                         bot_nw: true,
@@ -791,17 +767,16 @@ function createStairsBlockDefinition(
                         },
                     ],
                 },
-                'tag:azur:west': {},
+                [`tag:${id.description.namespace}:west`]: {},
             },
         },
 
         //top 2
         {
-            condition:
-                "q.block_state('minecraft:vertical_half') == 'top' && q.block_state('minecraft:cardinal_direction') == 'north' && q.block_state('azur:type') == 2",
+            condition: `q.block_state('minecraft:vertical_half') == 'top' && q.block_state('minecraft:cardinal_direction') == 'north' && q.block_state('${id.description.namespace}:type') == 2`,
             components: {
                 'minecraft:geometry': {
-                    identifier: 'geometry.azur.stairs',
+                    identifier: `geometry.${id.description.namespace}.stairs`,
                     bone_visibility: {
                         bot_ne: true,
                         bot_nw: true,
@@ -822,15 +797,14 @@ function createStairsBlockDefinition(
                         },
                     ],
                 },
-                'tag:azur:north': {},
+                [`tag:${id.description.namespace}:north`]: {},
             },
         },
         {
-            condition:
-                "q.block_state('minecraft:vertical_half') == 'top' && q.block_state('minecraft:cardinal_direction') == 'south' && q.block_state('azur:type') == 2",
+            condition: `q.block_state('minecraft:vertical_half') == 'top' && q.block_state('minecraft:cardinal_direction') == 'south' && q.block_state('${id.description.namespace}:type') == 2`,
             components: {
                 'minecraft:geometry': {
-                    identifier: 'geometry.azur.stairs',
+                    identifier: `geometry.${id.description.namespace}.stairs`,
                     bone_visibility: {
                         bot_ne: true,
                         bot_nw: false,
@@ -851,15 +825,14 @@ function createStairsBlockDefinition(
                         },
                     ],
                 },
-                'tag:azur:south': {},
+                [`tag:${id.description.namespace}:south`]: {},
             },
         },
         {
-            condition:
-                "q.block_state('minecraft:vertical_half') == 'top' && q.block_state('minecraft:cardinal_direction') == 'east' && q.block_state('azur:type') == 2",
+            condition: `q.block_state('minecraft:vertical_half') == 'top' && q.block_state('minecraft:cardinal_direction') == 'east' && q.block_state('${id.description.namespace}:type') == 2`,
             components: {
                 'minecraft:geometry': {
-                    identifier: 'geometry.azur.stairs',
+                    identifier: `geometry.${id.description.namespace}.stairs`,
                     bone_visibility: {
                         bot_ne: true,
                         bot_nw: true,
@@ -880,15 +853,14 @@ function createStairsBlockDefinition(
                         },
                     ],
                 },
-                'tag:azur:east': {},
+                [`tag:${id.description.namespace}:east`]: {},
             },
         },
         {
-            condition:
-                "q.block_state('minecraft:vertical_half') == 'top' && q.block_state('minecraft:cardinal_direction') == 'west' && q.block_state('azur:type') == 2",
+            condition: `q.block_state('minecraft:vertical_half') == 'top' && q.block_state('minecraft:cardinal_direction') == 'west' && q.block_state('${id.description.namespace}:type') == 2`,
             components: {
                 'minecraft:geometry': {
-                    identifier: 'geometry.azur.stairs',
+                    identifier: `geometry.${id.description.namespace}.stairs`,
                     bone_visibility: {
                         bot_ne: false,
                         bot_nw: true,
@@ -909,17 +881,16 @@ function createStairsBlockDefinition(
                         },
                     ],
                 },
-                'tag:azur:west': {},
+                [`tag:${id.description.namespace}:west`]: {},
             },
         },
 
         //top 3
         {
-            condition:
-                "q.block_state('minecraft:vertical_half') == 'top' && q.block_state('minecraft:cardinal_direction') == 'north' && q.block_state('azur:type') == 3",
+            condition: `q.block_state('minecraft:vertical_half') == 'top' && q.block_state('minecraft:cardinal_direction') == 'north' && q.block_state('${id.description.namespace}:type') == 3`,
             components: {
                 'minecraft:geometry': {
-                    identifier: 'geometry.azur.stairs',
+                    identifier: `geometry.${id.description.namespace}.stairs`,
                     bone_visibility: {
                         bot_ne: true,
                         bot_nw: true,
@@ -940,15 +911,14 @@ function createStairsBlockDefinition(
                         },
                     ],
                 },
-                'tag:azur:north': {},
+                [`tag:${id.description.namespace}:north`]: {},
             },
         },
         {
-            condition:
-                "q.block_state('minecraft:vertical_half') == 'top' && q.block_state('minecraft:cardinal_direction') == 'south' && q.block_state('azur:type') == 3",
+            condition: `q.block_state('minecraft:vertical_half') == 'top' && q.block_state('minecraft:cardinal_direction') == 'south' && q.block_state('${id.description.namespace}:type') == 3`,
             components: {
                 'minecraft:geometry': {
-                    identifier: 'geometry.azur.stairs',
+                    identifier: `geometry.${id.description.namespace}.stairs`,
                     bone_visibility: {
                         bot_ne: false,
                         bot_nw: true,
@@ -969,15 +939,14 @@ function createStairsBlockDefinition(
                         },
                     ],
                 },
-                'tag:azur:south': {},
+                [`tag:${id.description.namespace}:south`]: {},
             },
         },
         {
-            condition:
-                "q.block_state('minecraft:vertical_half') == 'top' && q.block_state('minecraft:cardinal_direction') == 'east' && q.block_state('azur:type') == 3",
+            condition: `q.block_state('minecraft:vertical_half') == 'top' && q.block_state('minecraft:cardinal_direction') == 'east' && q.block_state('${id.description.namespace}:type') == 3`,
             components: {
                 'minecraft:geometry': {
-                    identifier: 'geometry.azur.stairs',
+                    identifier: `geometry.${id.description.namespace}.stairs`,
                     bone_visibility: {
                         bot_ne: true,
                         bot_nw: false,
@@ -998,15 +967,14 @@ function createStairsBlockDefinition(
                         },
                     ],
                 },
-                'tag:azur:east': {},
+                [`tag:${id.description.namespace}:east`]: {},
             },
         },
         {
-            condition:
-                "q.block_state('minecraft:vertical_half') == 'top' && q.block_state('minecraft:cardinal_direction') == 'west' && q.block_state('azur:type') == 3",
+            condition: `q.block_state('minecraft:vertical_half') == 'top' && q.block_state('minecraft:cardinal_direction') == 'west' && q.block_state('${id.description.namespace}:type') == 3`,
             components: {
                 'minecraft:geometry': {
-                    identifier: 'geometry.azur.stairs',
+                    identifier: `geometry.${id.description.namespace}.stairs`,
                     bone_visibility: {
                         bot_ne: true,
                         bot_nw: true,
@@ -1027,17 +995,16 @@ function createStairsBlockDefinition(
                         },
                     ],
                 },
-                'tag:azur:west': {},
+                [`tag:${id.description.namespace}:west`]: {},
             },
         },
 
         //top 4
         {
-            condition:
-                "q.block_state('minecraft:vertical_half') == 'top' && q.block_state('minecraft:cardinal_direction') == 'north' && q.block_state('azur:type') == 4",
+            condition: `q.block_state('minecraft:vertical_half') == 'top' && q.block_state('minecraft:cardinal_direction') == 'north' && q.block_state('${id.description.namespace}:type') == 4`,
             components: {
                 'minecraft:geometry': {
-                    identifier: 'geometry.azur.stairs',
+                    identifier: `geometry.${id.description.namespace}.stairs`,
                     bone_visibility: {
                         bot_ne: false,
                         bot_nw: true,
@@ -1058,15 +1025,14 @@ function createStairsBlockDefinition(
                         },
                     ],
                 },
-                'tag:azur:north': {},
+                [`tag:${id.description.namespace}:north`]: {},
             },
         },
         {
-            condition:
-                "q.block_state('minecraft:vertical_half') == 'top' && q.block_state('minecraft:cardinal_direction') == 'south' && q.block_state('azur:type') == 4",
+            condition: `q.block_state('minecraft:vertical_half') == 'top' && q.block_state('minecraft:cardinal_direction') == 'south' && q.block_state('${id.description.namespace}:type') == 4`,
             components: {
                 'minecraft:geometry': {
-                    identifier: 'geometry.azur.stairs',
+                    identifier: `geometry.${id.description.namespace}.stairs`,
                     bone_visibility: {
                         bot_ne: false,
                         bot_nw: false,
@@ -1087,15 +1053,14 @@ function createStairsBlockDefinition(
                         },
                     ],
                 },
-                'tag:azur:south': {},
+                [`tag:${id.description.namespace}:south`]: {},
             },
         },
         {
-            condition:
-                "q.block_state('minecraft:vertical_half') == 'top' && q.block_state('minecraft:cardinal_direction') == 'east' && q.block_state('azur:type') == 4",
+            condition: `q.block_state('minecraft:vertical_half') == 'top' && q.block_state('minecraft:cardinal_direction') == 'east' && q.block_state('${id.description.namespace}:type') == 4`,
             components: {
                 'minecraft:geometry': {
-                    identifier: 'geometry.azur.stairs',
+                    identifier: `geometry.${id.description.namespace}.stairs`,
                     bone_visibility: {
                         bot_ne: false,
                         bot_nw: false,
@@ -1116,15 +1081,14 @@ function createStairsBlockDefinition(
                         },
                     ],
                 },
-                'tag:azur:east': {},
+                [`tag:${id.description.namespace}:east`]: {},
             },
         },
         {
-            condition:
-                "q.block_state('minecraft:vertical_half') == 'top' && q.block_state('minecraft:cardinal_direction') == 'west' && q.block_state('azur:type') == 4",
+            condition: `q.block_state('minecraft:vertical_half') == 'top' && q.block_state('minecraft:cardinal_direction') == 'west' && q.block_state('${id.description.namespace}:type') == 4`,
             components: {
                 'minecraft:geometry': {
-                    identifier: 'geometry.azur.stairs',
+                    identifier: `geometry.${id.description.namespace}.stairs`,
                     bone_visibility: {
                         bot_ne: false,
                         bot_nw: false,
@@ -1145,17 +1109,16 @@ function createStairsBlockDefinition(
                         },
                     ],
                 },
-                'tag:azur:west': {},
+                [`tag:${id.description.namespace}:west`]: {},
             },
         },
 
         //top 5
         {
-            condition:
-                "q.block_state('minecraft:vertical_half') == 'top' && q.block_state('minecraft:cardinal_direction') == 'north' && q.block_state('azur:type') == 5",
+            condition: `q.block_state('minecraft:vertical_half') == 'top' && q.block_state('minecraft:cardinal_direction') == 'north' && q.block_state('${id.description.namespace}:type') == 5`,
             components: {
                 'minecraft:geometry': {
-                    identifier: 'geometry.azur.stairs',
+                    identifier: `geometry.${id.description.namespace}.stairs`,
                     bone_visibility: {
                         bot_ne: true,
                         bot_nw: false,
@@ -1176,15 +1139,14 @@ function createStairsBlockDefinition(
                         },
                     ],
                 },
-                'tag:azur:north': {},
+                [`tag:${id.description.namespace}:north`]: {},
             },
         },
         {
-            condition:
-                "q.block_state('minecraft:vertical_half') == 'top' && q.block_state('minecraft:cardinal_direction') == 'south' && q.block_state('azur:type') == 5",
+            condition: `q.block_state('minecraft:vertical_half') == 'top' && q.block_state('minecraft:cardinal_direction') == 'south' && q.block_state('${id.description.namespace}:type') == 5`,
             components: {
                 'minecraft:geometry': {
-                    identifier: 'geometry.azur.stairs',
+                    identifier: `geometry.${id.description.namespace}.stairs`,
                     bone_visibility: {
                         bot_ne: false,
                         bot_nw: false,
@@ -1205,15 +1167,14 @@ function createStairsBlockDefinition(
                         },
                     ],
                 },
-                'tag:azur:south': {},
+                [`tag:${id.description.namespace}:south`]: {},
             },
         },
         {
-            condition:
-                "q.block_state('minecraft:vertical_half') == 'top' && q.block_state('minecraft:cardinal_direction') == 'east' && q.block_state('azur:type') == 5",
+            condition: `q.block_state('minecraft:vertical_half') == 'top' && q.block_state('minecraft:cardinal_direction') == 'east' && q.block_state('${id.description.namespace}:type') == 5`,
             components: {
                 'minecraft:geometry': {
-                    identifier: 'geometry.azur.stairs',
+                    identifier: `geometry.${id.description.namespace}.stairs`,
                     bone_visibility: {
                         bot_ne: true,
                         bot_nw: false,
@@ -1234,15 +1195,14 @@ function createStairsBlockDefinition(
                         },
                     ],
                 },
-                'tag:azur:east': {},
+                [`tag:${id.description.namespace}:east`]: {},
             },
         },
         {
-            condition:
-                "q.block_state('minecraft:vertical_half') == 'top' && q.block_state('minecraft:cardinal_direction') == 'west' && q.block_state('azur:type') == 5",
+            condition: `q.block_state('minecraft:vertical_half') == 'top' && q.block_state('minecraft:cardinal_direction') == 'west' && q.block_state('${id.description.namespace}:type') == 5`,
             components: {
                 'minecraft:geometry': {
-                    identifier: 'geometry.azur.stairs',
+                    identifier: `geometry.${id.description.namespace}.stairs`,
                     bone_visibility: {
                         bot_ne: false,
                         bot_nw: true,
@@ -1263,7 +1223,7 @@ function createStairsBlockDefinition(
                         },
                     ],
                 },
-                'tag:azur:west': {},
+                [`tag:${id.description.namespace}:west`]: {},
             },
         },
     ];
@@ -1300,7 +1260,7 @@ function createStairsBlockDefinition(
                     },
                 },
                 states: {
-                    'azur:type': [1, 2, 3, 4, 5],
+                    [`${id.description.namespace}:type`]: [1, 2, 3, 4, 5],
                 },
             },
             components,

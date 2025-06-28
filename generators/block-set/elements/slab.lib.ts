@@ -15,7 +15,7 @@ export function createSlab(
     blocksIO: BlockJsonIO
 ) {
     Deno.writeTextFileSync(
-        `BP/blocks/azur/block_set/${id.name}/slab.json`,
+        `BP/blocks/${id.description.prefix}/block_set/${id.name}/slab.json`,
         JSON.stringify(createSlabBlockDefinition(id, def, blocksIO))
     );
 }
@@ -40,7 +40,7 @@ function createSlabBlockDefinition(
         },
         'minecraft:item_visual': {
             geometry: {
-                identifier: 'geometry.azur.slab',
+                identifier: `geometry.${id.description.prefix}.slab`,
                 bone_visibility: {
                     top: false,
                     bot: true,
@@ -51,20 +51,20 @@ function createSlabBlockDefinition(
         'minecraft:material_instances': def.texture,
 
         'minecraft:geometry': {
-            identifier: 'geometry.azur.slab',
+            identifier: 'geometry.${id.description.prefix}.slab',
             bone_visibility: {
                 bot: "q.block_state('minecraft:vertical_half') == 'bottom'",
                 top: "q.block_state('minecraft:vertical_half') == 'top'",
             },
         },
 
-        'azur:slab': {},
+        [`${id.description.prefix}:slab`]: {},
     };
 
     const permutations = [
         {
             condition:
-                "q.block_state('minecraft:vertical_half') == 'bottom' && !q.block_state('azur:double')",
+                "q.block_state('minecraft:vertical_half') == 'bottom' && !q.block_state('${id.description.prefix}:double')",
             components: {
                 'minecraft:collision_box': {
                     origin: [-8, 0, -8],
@@ -77,8 +77,7 @@ function createSlabBlockDefinition(
             },
         },
         {
-            condition:
-                "q.block_state('minecraft:vertical_half') == 'top' && !q.block_state('azur:double')",
+            condition: `q.block_state('minecraft:vertical_half') == 'top' && !q.block_state('${id.description.prefix}:double')`,
             components: {
                 'minecraft:collision_box': {
                     origin: [-8, 8, -8],
@@ -91,7 +90,7 @@ function createSlabBlockDefinition(
             },
         },
         {
-            condition: "q.block_state('azur:double')",
+            condition: `q.block_state('${id.description.prefix}:double')`,
             components: {
                 'minecraft:geometry': {
                     identifier: 'minecraft:geometry.full_block',
@@ -129,7 +128,7 @@ function createSlabBlockDefinition(
                     },
                 },
                 states: {
-                    'azur:double': [false, true],
+                    [`${id.description.prefix}:double`]: [false, true],
                 },
             },
             components,

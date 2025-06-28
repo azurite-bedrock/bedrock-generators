@@ -18,7 +18,7 @@ export function createLeaves(
     blocksIO: BlockJsonIO
 ) {
     Deno.writeTextFileSync(
-        `BP/blocks/azur/block_set/${id.name}/leaves.json`,
+        `BP/blocks/${id.description.namespace}/block_set/${id.name}/leaves.json`,
         JSON.stringify(createLeavesBlockDefinition(id, def, blocksIO))
     );
 }
@@ -44,8 +44,8 @@ function createLeavesBlockDefinition(
             seconds_to_destroy: 0.3,
         },
         'minecraft:geometry': {
-            identifier: 'geometry.azur.custom_leaves',
-            culling: 'azur:leave_like',
+            identifier: `geometry.${id.description.namespace}.custom_leaves`,
+            culling: `${id.description.namespace}:leave_like`,
             culling_layer: 'minecraft:culling_layer.leaves',
         },
         'minecraft:light_dampening': 1,
@@ -54,12 +54,12 @@ function createLeavesBlockDefinition(
     };
 
     if (def.decay === true) {
-        components['azur:decayable'] = {
+        components[`${id.description.namespace}:decayable`] = {
             stem_blocks: [
                 `${id.description.namespace}:${id.description.prefix}_log`,
                 `${id.description.namespace}:${id.description.prefix}_wood`,
             ],
-            persistence_state: 'azur:persistent',
+            persistence_state: `${id.description.namespace}:persistent`,
         };
     }
 
@@ -87,7 +87,7 @@ function createLeavesBlockDefinition(
                             : def.add_to_group,
                 },
                 states: {
-                    'azur:persistent': [false, true],
+                    [`${id.description.namespace}:persistent`]: [false, true],
                 },
             },
             components,

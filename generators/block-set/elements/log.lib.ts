@@ -18,13 +18,13 @@ export function createLog(
     blocksIO: BlockJsonIO
 ) {
     Deno.writeTextFileSync(
-        `BP/blocks/azur/block_set/${id.name}/log.json`,
+        `BP/blocks/${id.description.namespace}/block_set/${id.name}/log.json`,
         JSON.stringify(createLogBlockDefinition(id, def, blocksIO))
     );
 
     if (def.strippable !== undefined && 'texture' in def.strippable) {
         Deno.writeTextFileSync(
-            `BP/blocks/azur/block_set/${id.name}/stripped_log.json`,
+            `BP/blocks/${id.description.namespace}/block_set/${id.name}/stripped_log.json`,
             JSON.stringify(createStrippedLogBlockDefinition(id, def, blocksIO))
         );
     }
@@ -57,7 +57,7 @@ const createLogBlockDefinition = (
     };
 
     if (def.strippable !== undefined)
-        components['azur:strippable'] = {
+        components[`${id.description.namespace}:strippable`] = {
             target_block:
                 'block' in def.strippable
                     ? def.strippable.block

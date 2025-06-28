@@ -17,7 +17,7 @@ export function createTrapdoor(
     blocksIO: BlockJsonIO
 ) {
     Deno.writeTextFileSync(
-        `BP/blocks/azur/block_set/${id.name}/trapdoor.json`,
+        `BP/blocks/${id.description.namespace}/block_set/${id.name}/trapdoor.json`,
         JSON.stringify(createTrapdoorBlockDefinition(id, def, blocksIO))
     );
 }
@@ -49,65 +49,57 @@ function createTrapdoorBlockDefinition(
             catch_chance_modifier: 5,
             destroy_chance_modifier: 20,
         },
-        'minecraft:geometry': 'geometry.azur.trapdoor',
+        'minecraft:geometry': [`geometry.${id.description.namespace}.trapdoor`],
         'minecraft:material_instances': def.texture,
 
-        'azur:trapdoor': {},
+        [`${id.description.namespace}:trapdoor`]: {},
     };
 
     const permutations = [
         {
-            condition:
-                "q.block_state('minecraft:vertical_half') == 'top' && q.block_state('minecraft:cardinal_direction') == 'north' && !q.block_state('azur:open')",
+            condition: `q.block_state('minecraft:vertical_half') == 'top' && q.block_state('minecraft:cardinal_direction') == 'north' && !q.block_state('${id.description.namespace}:open')`,
             components: {
                 'minecraft:transformation': { rotation: [0, 0, 180] },
             },
         },
         {
-            condition:
-                "q.block_state('minecraft:vertical_half') == 'top' && q.block_state('minecraft:cardinal_direction') == 'south' && !q.block_state('azur:open')",
+            condition: `q.block_state('minecraft:vertical_half') == 'top' && q.block_state('minecraft:cardinal_direction') == 'south' && !q.block_state('${id.description.namespace}:open')`,
             components: {
                 'minecraft:transformation': { rotation: [180, 0, 0] },
             },
         },
         {
-            condition:
-                "q.block_state('minecraft:vertical_half') == 'top' && q.block_state('minecraft:cardinal_direction') == 'east' && !q.block_state('azur:open')",
+            condition: `q.block_state('minecraft:vertical_half') == 'top' && q.block_state('minecraft:cardinal_direction') == 'east' && !q.block_state('${id.description.namespace}:open')`,
             components: {
                 'minecraft:transformation': { rotation: [180, -270, 0] },
             },
         },
         {
-            condition:
-                "q.block_state('minecraft:vertical_half') == 'top' && q.block_state('minecraft:cardinal_direction') == 'west' && !q.block_state('azur:open')",
+            condition: `q.block_state('minecraft:vertical_half') == 'top' && q.block_state('minecraft:cardinal_direction') == 'west' && !q.block_state('${id.description.namespace}:open')`,
             components: {
                 'minecraft:transformation': { rotation: [180, 270, 0] },
             },
         },
         {
-            condition:
-                "q.block_state('minecraft:vertical_half') == 'top' && q.block_state('minecraft:cardinal_direction') == 'north' && q.block_state('azur:open')",
+            condition: `q.block_state('minecraft:vertical_half') == 'top' && q.block_state('minecraft:cardinal_direction') == 'north' && q.block_state('${id.description.namespace}:open')`,
             components: {
                 'minecraft:transformation': { rotation: [-270, 0, 0] },
             },
         },
         {
-            condition:
-                "q.block_state('minecraft:vertical_half') == 'top' && q.block_state('minecraft:cardinal_direction') == 'south' && q.block_state('azur:open')",
+            condition: `q.block_state('minecraft:vertical_half') == 'top' && q.block_state('minecraft:cardinal_direction') == 'south' && q.block_state('${id.description.namespace}:open')`,
             components: {
                 'minecraft:transformation': { rotation: [270, 0, -180] },
             },
         },
         {
-            condition:
-                "q.block_state('minecraft:vertical_half') == 'top' && q.block_state('minecraft:cardinal_direction') == 'east' && q.block_state('azur:open')",
+            condition: `q.block_state('minecraft:vertical_half') == 'top' && q.block_state('minecraft:cardinal_direction') == 'east' && q.block_state('${id.description.namespace}:open')`,
             components: {
                 'minecraft:transformation': { rotation: [0, 270, 90] },
             },
         },
         {
-            condition:
-                "q.block_state('minecraft:vertical_half') == 'top' && q.block_state('minecraft:cardinal_direction') == 'west' && q.block_state('azur:open')",
+            condition: `q.block_state('minecraft:vertical_half') == 'top' && q.block_state('minecraft:cardinal_direction') == 'west' && q.block_state('${id.description.namespace}:open')`,
             components: {
                 'minecraft:transformation': {
                     rotation: [180, -270, -270],
@@ -115,57 +107,49 @@ function createTrapdoorBlockDefinition(
             },
         },
         {
-            condition:
-                "q.block_state('minecraft:vertical_half') == 'bottom' && q.block_state('minecraft:cardinal_direction') == 'north' && !q.block_state('azur:open')",
+            condition: `q.block_state('minecraft:vertical_half') == 'bottom' && q.block_state('minecraft:cardinal_direction') == 'north' && !q.block_state('${id.description.namespace}:open')`,
             components: {
                 'minecraft:transformation': { rotation: [0, 0, 0] },
             },
         },
         {
-            condition:
-                "q.block_state('minecraft:vertical_half') == 'bottom' && q.block_state('minecraft:cardinal_direction') == 'south' && !q.block_state('azur:open')",
+            condition: `q.block_state('minecraft:vertical_half') == 'bottom' && q.block_state('minecraft:cardinal_direction') == 'south' && !q.block_state('${id.description.namespace}:open')`,
             components: {
                 'minecraft:transformation': { rotation: [0, 180, 0] },
             },
         },
         {
-            condition:
-                "q.block_state('minecraft:vertical_half') == 'bottom' && q.block_state('minecraft:cardinal_direction') == 'east' && !q.block_state('azur:open')",
+            condition: `q.block_state('minecraft:vertical_half') == 'bottom' && q.block_state('minecraft:cardinal_direction') == 'east' && !q.block_state('${id.description.namespace}:open')`,
             components: {
                 'minecraft:transformation': { rotation: [0, 270, 0] },
             },
         },
         {
-            condition:
-                "q.block_state('minecraft:vertical_half') == 'bottom' && q.block_state('minecraft:cardinal_direction') == 'west' && !q.block_state('azur:open')",
+            condition: `q.block_state('minecraft:vertical_half') == 'bottom' && q.block_state('minecraft:cardinal_direction') == 'west' && !q.block_state('${id.description.namespace}:open')`,
             components: {
                 'minecraft:transformation': { rotation: [0, -270, 0] },
             },
         },
         {
-            condition:
-                "q.block_state('minecraft:vertical_half') == 'bottom' && q.block_state('minecraft:cardinal_direction') == 'north' && q.block_state('azur:open')",
+            condition: `q.block_state('minecraft:vertical_half') == 'bottom' && q.block_state('minecraft:cardinal_direction') == 'north' && q.block_state('${id.description.namespace}:open')`,
             components: {
                 'minecraft:transformation': { rotation: [90, 0, 180] },
             },
         },
         {
-            condition:
-                "q.block_state('minecraft:vertical_half') == 'bottom' && q.block_state('minecraft:cardinal_direction') == 'south' && q.block_state('azur:open')",
+            condition: `q.block_state('minecraft:vertical_half') == 'bottom' && q.block_state('minecraft:cardinal_direction') == 'south' && q.block_state('${id.description.namespace}:open')`,
             components: {
                 'minecraft:transformation': { rotation: [270, 0, 0] },
             },
         },
         {
-            condition:
-                "q.block_state('minecraft:vertical_half') == 'bottom' && q.block_state('minecraft:cardinal_direction') == 'east' && q.block_state('azur:open')",
+            condition: `q.block_state('minecraft:vertical_half') == 'bottom' && q.block_state('minecraft:cardinal_direction') == 'east' && q.block_state('${id.description.namespace}:open')`,
             components: {
                 'minecraft:transformation': { rotation: [0, -270, 90] },
             },
         },
         {
-            condition:
-                "q.block_state('minecraft:vertical_half') == 'bottom' && q.block_state('minecraft:cardinal_direction') == 'west' && q.block_state('azur:open')",
+            condition: `q.block_state('minecraft:vertical_half') == 'bottom' && q.block_state('minecraft:cardinal_direction') == 'west' && q.block_state('${id.description.namespace}:open')`,
             components: {
                 'minecraft:transformation': { rotation: [180, 270, -270] },
             },
@@ -204,7 +188,7 @@ function createTrapdoorBlockDefinition(
                     },
                 },
                 states: {
-                    'azur:open': [false, true],
+                    [`${id.description.namespace}:open`]: [false, true],
                 },
             },
             components,
