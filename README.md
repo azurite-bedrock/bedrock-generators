@@ -15,12 +15,15 @@ Generates comprehensive vanilla block sets including everything from logs and le
 
 ## Usage
 
-To use the `block-set` generator in your project:
+To use (for example) the `block-set` generator in your project:
+
+1. Add the [bedrock-generators](https://github.com/azurite-bedrock/bedrock-generators) repo as a git submodule
+2. Import it in your local `packs/data/marathon/block-set.ts` like this:
 
 ```typescript
-import { handleBlockSetDefinition } from 'https://deno.land/x/gh:azurite-bedrock:regolith-filters/generators/block-set/block_set.ts';
+import { handleBlockSetDefinition } from '../../../../bedrock-generators/generators/block-set/block_set.ts';
 
-handleBlockSetDefinition();
+handleBlockSetDefinition('data/marathon/<block-set-path>');
 ```
 
 ## Contributing

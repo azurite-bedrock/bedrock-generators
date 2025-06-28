@@ -54,10 +54,10 @@ export interface BlockSetBaseDefinition {
     add_to_group: boolean | string;
 }
 
-export async function handleBlockSetDefinition() {
+export async function handleBlockSetDefinition(path: string): Promise<void> {
     Deno.chdir(Deno.env.get('MARATHON_ROOT_DIR')!);
 
-    for await (const file of walk('data/marathon/block-set/sets/', {
+    for await (const file of walk(path, {
         includeDirs: false,
         exts: ['.json'],
     })) {
