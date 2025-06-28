@@ -72,7 +72,10 @@ export async function handleBlockSetDefinition(path: string): Promise<void> {
 
         console.info(`[${FILE_NAME}] Generating ${identifier.name} block-set`);
 
-        Deno.mkdirSync(`BP/blocks/azur/block_set/${identifier.name}/`, { recursive: true });
+        Deno.mkdirSync(
+            `BP/blocks/${identifier.description.namespace}/block_set/${identifier.name}/`,
+            { recursive: true }
+        );
 
         blocksIO.load();
 
