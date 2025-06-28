@@ -15,7 +15,7 @@ export function createSlab(
     blocksIO: BlockJsonIO
 ) {
     Deno.writeTextFileSync(
-        `BP/blocks/${id.description.prefix}/block_set/${id.name}/slab.json`,
+        `BP/blocks/${id.description.namespace}/block_set/${id.name}/slab.json`,
         JSON.stringify(createSlabBlockDefinition(id, def, blocksIO))
     );
 }
@@ -40,7 +40,7 @@ function createSlabBlockDefinition(
         },
         'minecraft:item_visual': {
             geometry: {
-                identifier: `geometry.${id.description.prefix}.slab`,
+                identifier: `geometry.${id.description.namespace}.slab`,
                 bone_visibility: {
                     top: false,
                     bot: true,
@@ -51,14 +51,14 @@ function createSlabBlockDefinition(
         'minecraft:material_instances': def.texture,
 
         'minecraft:geometry': {
-            identifier: 'geometry.${id.description.prefix}.slab',
+            identifier: `geometry.${id.description.namespace}.slab`,
             bone_visibility: {
                 bot: "q.block_state('minecraft:vertical_half') == 'bottom'",
                 top: "q.block_state('minecraft:vertical_half') == 'top'",
             },
         },
 
-        [`${id.description.prefix}:slab`]: {},
+        [`${id.description.namespace}:slab`]: {},
     };
 
     const permutations = [
@@ -77,7 +77,7 @@ function createSlabBlockDefinition(
             },
         },
         {
-            condition: `q.block_state('minecraft:vertical_half') == 'top' && !q.block_state('${id.description.prefix}:double')`,
+            condition: `q.block_state('minecraft:vertical_half') == 'top' && !q.block_state('${id.description.namespace}:double')`,
             components: {
                 'minecraft:collision_box': {
                     origin: [-8, 8, -8],
@@ -90,7 +90,7 @@ function createSlabBlockDefinition(
             },
         },
         {
-            condition: `q.block_state('${id.description.prefix}:double')`,
+            condition: `q.block_state('${id.description.namespace}:double')`,
             components: {
                 'minecraft:geometry': {
                     identifier: 'minecraft:geometry.full_block',
