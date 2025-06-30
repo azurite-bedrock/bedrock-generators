@@ -49,7 +49,7 @@ function createTrapdoorBlockDefinition(
             catch_chance_modifier: 5,
             destroy_chance_modifier: 20,
         },
-        'minecraft:geometry': [`geometry.${id.description.namespace}.trapdoor`],
+        'minecraft:geometry': `geometry.${id.description.namespace}.trapdoor`,
         'minecraft:material_instances': def.texture,
 
         [`${id.description.namespace}:trapdoor`]: {},

@@ -79,32 +79,32 @@ export async function handleBlockSetDefinition(path: string): Promise<void> {
 
         blocksIO.load();
 
-        if (elements['azur:log'] !== undefined)
-            createLog(identifier, elements['azur:log'], blocksIO);
-        if (elements['azur:wood'] !== undefined)
-            createWood(identifier, elements['azur:wood'], blocksIO);
-        if (elements['azur:leaves'] !== undefined)
-            createLeaves(identifier, elements['azur:leaves'], blocksIO);
-        if (elements['azur:planks'] !== undefined)
-            createPlanks(identifier, elements['azur:planks'], blocksIO);
+        // if (elements['azur:log'] !== undefined)
+        //     createLog(identifier, elements['azur:log'], blocksIO);
+        // if (elements['azur:wood'] !== undefined)
+        //     createWood(identifier, elements['azur:wood'], blocksIO);
+        // if (elements['azur:leaves'] !== undefined)
+        //     createLeaves(identifier, elements['azur:leaves'], blocksIO);
+        // if (elements['azur:planks'] !== undefined)
+        //     createPlanks(identifier, elements['azur:planks'], blocksIO);
         if (elements['azur:slab'] !== undefined)
             createSlab(identifier, elements['azur:slab'], blocksIO);
-        if (elements['azur:stairs'] !== undefined)
-            createStairs(identifier, elements['azur:stairs'], blocksIO);
-        if (elements['azur:fence'] !== undefined)
-            createFence(identifier, elements['azur:fence'], blocksIO);
-        if (elements['azur:fence_gate'] !== undefined)
-            createFenceGate(identifier, elements['azur:fence_gate'], blocksIO);
-        if (elements['azur:wall'] !== undefined)
-            createWall(identifier, elements['azur:wall'], blocksIO);
-        if (elements['azur:door'] !== undefined)
-            createDoor(identifier, elements['azur:door'], blocksIO);
+        // if (elements['azur:stairs'] !== undefined)
+        //     createStairs(identifier, elements['azur:stairs'], blocksIO);
+        // if (elements['azur:fence'] !== undefined)
+        //     createFence(identifier, elements['azur:fence'], blocksIO);
+        // if (elements['azur:fence_gate'] !== undefined)
+        //     createFenceGate(identifier, elements['azur:fence_gate'], blocksIO);
+        // if (elements['azur:wall'] !== undefined)
+        //     createWall(identifier, elements['azur:wall'], blocksIO);
+        // if (elements['azur:door'] !== undefined)
+        //     createDoor(identifier, elements['azur:door'], blocksIO);
         if (elements['azur:trapdoor'] !== undefined)
             createTrapdoor(identifier, elements['azur:trapdoor'], blocksIO);
-        if (elements['azur:button'] !== undefined)
-            createButton(identifier, elements['azur:button'], blocksIO);
-        if (elements['azur:pressure_plate'] !== undefined)
-            createPressurePlate(identifier, elements['azur:pressure_plate'], blocksIO);
+        // if (elements['azur:button'] !== undefined)
+        //     createButton(identifier, elements['azur:button'], blocksIO);
+        // if (elements['azur:pressure_plate'] !== undefined)
+        //     createPressurePlate(identifier, elements['azur:pressure_plate'], blocksIO);
 
         blocksIO.save();
     }

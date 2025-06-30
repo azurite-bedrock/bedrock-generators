@@ -95,6 +95,8 @@ function createSlabBlockDefinition(
                 'minecraft:geometry': {
                     identifier: 'minecraft:geometry.full_block',
                 },
+                'minecraft:collision_box': { origin: [-8, 0, -8], size: [16, 16, 16] },
+                'minecraft:selection_box': { origin: [-8, 0, -8], size: [16, 16, 16] },
             },
         },
     ];
@@ -128,7 +130,7 @@ function createSlabBlockDefinition(
                     },
                 },
                 states: {
-                    [`${id.description.prefix}:double`]: [false, true],
+                    [`${id.description.namespace}:double`]: [false, true],
                 },
             },
             components,
